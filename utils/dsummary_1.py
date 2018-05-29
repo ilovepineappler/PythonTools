@@ -19,14 +19,15 @@ def making_dataset(file):
     key, data_list2 = raw_data(file)
     for i in [0, 1, 2, 3, 4, 5, 6]:
         if(i == 0 or 2 or 6):
-            vali = numeric_values(i,data_list2)  
+            vali = numeric_values(i,data_list2)
             dataset.setdefault(key[i], vali)
         else:
             vali = nominal_values(i,data_list2)
             dataset.setdefault(key[i], vali)
+    print dataset
     return dataset
 
-def numeric_values(num,data_list):    
+def numeric_values(num,data_list):
     results={}
     lst1=[(n[num]) for n in data_list]
     results.setdefault('max',max(lst1))
@@ -35,12 +36,11 @@ def numeric_values(num,data_list):
 
 def nominal_values(num,data_list):
     results={}
-    lst2=[str1[num] for str1 in data_list]    
+    lst2=[str1[num] for str1 in data_list]
     for str2 in lst2:
-        results.setdefault(str2,lst2.count(str2))    
+        results.setdefault(str2,lst2.count(str2))
     return results
-    
+
 if __name__== "__main__":
     dataset = making_dataset("insurance.csv")
     print dataset
-    
